@@ -1,4 +1,5 @@
 import React from "react";
+import {useParams} from "react-router-dom"
 
 import PlaceList from "../components/PlaceList";
 
@@ -7,7 +8,7 @@ const DUMMY_PLACES = [
         id: 'p1',
         title: 'Empire State',
         description: 'Great building',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg" alt="Empire State Building (aerial view).jpg',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg',
         address: '20 W 34th St, New York, NY 10001',
         location: {
             lat: 40.7484405,
@@ -19,7 +20,7 @@ const DUMMY_PLACES = [
         id: 'p2',
         title: 'Empire State',
         description: 'Great building',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg" alt="Empire State Building (aerial view).jpg',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg',
         address: '20 W 34th St, New York, NY 10001',
         location: {
             lat: 40.7484405,
@@ -30,7 +31,9 @@ const DUMMY_PLACES = [
 ]
 
 const UserPlaces = props => {
-    return <PlaceList items={DUMMY_PLACES} />;
+    const userId = useParams().userId;
+    const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId);
+    return <PlaceList items={loadedPlaces} />;
 };
 
 export default UserPlaces;

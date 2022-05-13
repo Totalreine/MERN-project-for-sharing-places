@@ -7,6 +7,7 @@ import SideDrawer from "./SideDrower";
 import Backdrop from "../UIElements/Backdrop";
 import './MainNavigation.css'
 
+
 const MainNavigation = props => {
     
     const [drawerIsOpen, setDrawerIsOpen] = useState(false) 
@@ -22,7 +23,7 @@ const MainNavigation = props => {
     
     <React.Fragment>
             {drawerIsOpen && <Backdrop onClick={openDrawerHandler}/>}
-            <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}H>
+            <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
                 <nav className="main-navigation__drawer-nav">
                     <NavLinks />
                 </nav>
@@ -34,7 +35,7 @@ const MainNavigation = props => {
                     <span></span>
                     <span></span>
                 </button>
-                <h1 className="main-navigation__menu__title">
+                <h1 className="main-navigation__title">
                     <Link to="/">YourPlaces</Link>
                 </h1>
                 <nav className="main-navigation__header-nav">

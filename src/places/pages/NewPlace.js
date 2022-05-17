@@ -1,4 +1,4 @@
-import React, {useReducer, useCallback} from "react";
+import React from "react";
 
 import Input from "../../shared/FormElements/Input";
 import Button from "../../shared/FormElements/Button"
@@ -49,7 +49,7 @@ const NewPlace = () => {
         <Input 
         id='description'
         element="textarea" 
-        label="Title"
+        label="Description"
         validators={[VALIDATOR_MINLENGTH(5)]}
         errorText='Please  enter a valid description (at least 5 characters).' 
         onInput={inputHandler }

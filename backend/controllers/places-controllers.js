@@ -97,11 +97,11 @@ const createPlace = async (req, res, next) => {
     currentSession.startTransaction()
     await createdPlace.save({session: currentSession})
     user.places.push(createdPlace)
-    await user.save()
+    await user.save({session: currentSession})
     await currentSession.commitTransaction()
 
   } catch (err) {
-    const error = new HttpError('Creating a place failed. Try again', 500)
+    const error = new HttpError('Creating a place failed. Try again 2ND', 500)
     return next(error)
   }
   

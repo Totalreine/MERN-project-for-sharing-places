@@ -1,4 +1,4 @@
-const {validationResult} =require('express-validator')
+const {validationResult} = require('express-validator')
 
 const HttpError = require('../models/http-error')
 const User = require('../models/user')
@@ -18,7 +18,7 @@ const getUsers = async (req, res, next) => {
 }
 
 const signup  = async (req, res, next) => {
-    const errors = validationResult(req)
+   const errors = validationResult(req)
   if(!errors.isEmpty()) {
     return next( new HttpError('Invalid inputs',422))
   }
@@ -75,7 +75,7 @@ const login = async (req, res, next) => {
 
 
 
-    res.json({message: 'logged in'})
+    res.json({ message: 'logged in', user: existingUser.toObject({getters:true}) })
 
 }
 

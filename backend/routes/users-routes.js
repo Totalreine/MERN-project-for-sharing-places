@@ -1,5 +1,5 @@
 const express = require('express');
-const {check} =require('express-validator')
+const {check} = require('express-validator')
 
 const usersControllers = require('../controllers/users-controllers');
 
@@ -15,8 +15,8 @@ router.post('/signup',
     check('email')
     .normalizeEmail() //Test@test.com => test@test.com
     .isEmail(),
-    check('password')
-    .isLength({min: 6})
+    check('password').isLength({min: 6})
+    
 
 ], usersControllers.signup);
 

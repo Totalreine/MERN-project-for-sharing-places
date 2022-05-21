@@ -41,7 +41,7 @@ const signup  = async (req, res, next) => {
     const createdUser = new User({
         name,
         email,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/1/12/ApartheidSignEnglishAfrikaans.jpg',
+        image: req.file.path,
         password,
         places: []
     })

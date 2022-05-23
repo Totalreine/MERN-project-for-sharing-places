@@ -1,3 +1,4 @@
+const fs = require('fs')
 const mongoose  = require('mongoose');
 const {validationResult} =require('express-validator')
 
@@ -75,7 +76,7 @@ const createPlace = async (req, res, next) => {
     description,
     location: coordinates,
     address,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/1/12/ApartheidSignEnglishAfrikaans.jpg',
+    image: req.file.path,
     creator
   })
 
@@ -157,6 +158,8 @@ const deletePlace = async (req, res, next) => {
     const error = new HttpError('Could not find the place',404)
     return next(error)
   }
+
+  const imagePath = place.image
   
   try {
     const currentSession = await mongoose.startSession()
@@ -170,6 +173,7 @@ const deletePlace = async (req, res, next) => {
   const error = new HttpError('Could not delete place', 500)
   return next(error)
 }
+    fs.unlink(imagePath, err => {console.log(err)})
 
     res.status(200).json({message: "Deleted place"})
 

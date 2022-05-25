@@ -1,6 +1,6 @@
 const axios = require('axios')
-const { get } = require('http')
-const API_KEY = 'AIzaSyBCu-HaBefZeYvKpD_Yrg_JgLWR64FkGFU'
+
+const API_KEY = process.env.GOOGLE_API_KEY
 const HttpError = require('../models/http-error')
 
 const getCoorsForAddress = async (address) => {

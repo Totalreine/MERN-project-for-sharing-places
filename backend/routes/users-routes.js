@@ -1,9 +1,9 @@
 const express = require('express');
 const {check} = require('express-validator');
-const { fileURLToPath } = require('url');
 
 const fileUpload = require('../middleware/file-upload')
 const usersControllers = require('../controllers/users-controllers');
+
 
 const router = express.Router();
 

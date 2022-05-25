@@ -6,7 +6,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import ErrorModal from "../../shared/UIElements/ErrorModal"
 import LoadingSpinner from "../../shared/UIElements/LoadingSpinner"
 
-const UserPlaces = props => {
+const UserPlaces = () => {
     const [loadedPlaces, setLoadedPlaces] = useState()
     const  {isLoading, error, sendRequest, clearError} = useHttpClient()
 
@@ -15,7 +15,8 @@ const UserPlaces = props => {
     useEffect(() => {
         const fetchPlaces = async () => {
             try {
-                const responseData = await sendRequest(`http://localhost:5000/api/places/user/${userId}`)
+                const responseData = await sendRequest(
+                `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`)
                 setLoadedPlaces(responseData.places)
             } catch (err) {
                 
@@ -32,7 +33,7 @@ const UserPlaces = props => {
         <React.Fragment>        
             <ErrorModal error={error} onClear={clearError} />
             {isLoading && (<div clasname="center"><LoadingSpinner/></div>)}
-            {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlace={placeDeleteHandler}/>}
+            {!isLoading && loadedPlaces && (<PlaceList items={loadedPlaces} onDeletePlace={placeDeleteHandler}/>)}
         </React.Fragment>
     )
 };
